@@ -16,7 +16,19 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
+  Check(event) {
+    //console.log(event.key, event.code);
+    //var currentSymbol = document.getElementById('game').querySelector('.word').querySelector('.symbol_current').innerHTML;
+    if (event.key.toUpperCase() === oGame.currentSymbol.innerHTML.toUpperCase())
+      oGame.success();
+    else
+      oGame.fail();
+  }
+    
   registerEvents() {
+    document.addEventListener('keydown', this.Check);
+    
+    
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -86,5 +98,5 @@ class Game {
   }
 }
 
-new Game(document.getElementById('game'))
+var oGame = new Game(document.getElementById('game'))
 
