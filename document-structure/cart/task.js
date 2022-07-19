@@ -3,7 +3,9 @@ document.querySelectorAll(".product__quantity-control").forEach(element => {
         let objQuantity = this.parentElement.querySelector(".product__quantity-value");
         let nKol = Number(objQuantity.innerHTML);
         nKol += (this.classList.contains("product__quantity-control_dec") ? -1 : 1);
+        if (nKol < 1) nKol = 1;
         objQuantity.innerHTML = nKol;
+        
     }
 });
 

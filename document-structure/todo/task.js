@@ -1,5 +1,7 @@
 document.getElementById("tasks__add").onclick = function(){
-    AddTask(document.querySelector(".tasks__input").value);
+    let txtData = document.querySelector(".tasks__input");
+    AddTask(txtData.value);
+    txtData.value = "";
     SaveData();
     return false;
 }

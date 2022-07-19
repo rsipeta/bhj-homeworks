@@ -4,6 +4,7 @@ document.querySelectorAll(".has-tooltip").forEach(element => {
     element.onclick = function() {
         if (current === this) { 
             document.querySelector(".tooltip").classList.remove("tooltip_active"); 
+            current = null;
             return false;
         }
         
@@ -15,10 +16,13 @@ document.querySelectorAll(".has-tooltip").forEach(element => {
         
         tooltip.classList = "tooltip tooltip_active";
         tooltip.innerHTML = this.getAttribute("title");
+        document.body.append(tooltip);
+        //this.appendChild(tooltip);
+
         let posTT = tooltip.getBoundingClientRect();
 
-        let top = pos.bottom;
-        let left = pos.left;
+        let top = pos.bottom + window.pageYOffset;
+        let left = pos.left + window.pageXOffset;
 
         if (this.getAttribute("data-position") === "left"){
             top -= posTT.height / 2 + pos.height / 2;
@@ -34,10 +38,10 @@ document.querySelectorAll(".has-tooltip").forEach(element => {
             top -= posTT.height + pos.height;
         }
 
-        tooltip.style.top = top  + "px";; 
-        tooltip.style.left = left  + "px";;
-
-        document.body.append(tooltip);
+        tooltip.style.position = "absolute";
+        tooltip.style.top = top  + "px"; 
+        tooltip.style.left = left  + "px";
+        
         return false;
     }
 });
